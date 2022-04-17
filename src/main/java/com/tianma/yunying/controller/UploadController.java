@@ -422,12 +422,13 @@ public class UploadController {
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
             String date = df.format(new Date());
             String filePath = cur_excel_path;
-
+            String tmp_name = "";
 //            if(role.equals("EVEN") || filePath.equals("")){
                 while(!isExist && time < 60){
                     cur_tmp = StringUtils.timeStamp2Date(tmp);
                     System.out.println(cur_tmp);
-                    filePath_tmp = upload_excel_path+role+"\\\\"+role+"生产计划_"+cur_tmp.replace(".","")+".xlsx";
+                    tmp_name = role+"\\\\"+role+"生产计划_"+cur_tmp.replace(".","")+".xlsx";
+                    filePath_tmp = upload_excel_path+tmp_name;
                     file = new File(filePath_tmp);
                     if(!file.exists()){
                         tmp = cur_time - 86400000;
@@ -511,7 +512,7 @@ public class UploadController {
             Dispatch.call(mailItem, "Send");
 
             System.out.println("1111111111111111111111111111111111111111111111111111111111111");
-            return new Result("200", "success");
+            return new Result("200", tmp_name);
         }
         catch (Exception e) {
             System.out.println(("调用outlook失败,无法发送邮件"));
@@ -568,90 +569,19 @@ public class UploadController {
             //收件人
             Dispatch recipients = Dispatch.call(mailItem, "Recipients").getDispatch();
 
-
-//            Dispatch.call(recipients, "Add" , "1754687268@qq.com"); //添加收件人
             for(int i = 0; i < add.size();i++){
                 Dispatch.call(recipients, "Add" , add.get(i).getMail()); //添加收件人
                 System.out.println(add.get(i).getMail());
             }
-//            Dispatch.call(recipients, "Add" , "lu_zou@tianma.cn"); //添加收件人
-//
-//            if(map.get("role").equals("ARRAY")) {
-////                Dispatch.put(mailItem, "CC", "lu_zou@tianma.cn;yisen_chen@tianma.cn"); //抄送
-//            }
-//            if(map.get("role").equals("EVEN")) {
-////                Dispatch.put(mailItem, "CC", "lu_zou@tianma.cn;yisen_chen@tianma.cn"); //抄送
-//            }
-//            if(map.get("role").equals("TPOT")) {
-////                Dispatch.put(mailItem, "CC", "lu_zou@tianma.cn;yisen_chen@tianma.cn"); //抄送
-//            }
-            if(map.get("role").equals("EAC")){
-//                Dispatch.call(recipients,"Add","tm18_oled_yunying_jihua@tianma.cn");
-//                Dispatch.call(recipients,"Add","oled_xmgl2_npm@tianma.cn");
-//                Dispatch.call(recipients,"Add","yuanxing_deng@tianma.cn");
-//                Dispatch.call(recipients,"Add","chunfang_zhu@tianma.cn");
-//                Dispatch.call(recipients,"Add","weijie_cai@tianma.cn");
-//                Dispatch.call(recipients,"Add","tao_zhang13@tianma.cn");
-//                Dispatch.call(recipients,"Add","liangjian_ye@tianma.cn");
-//                Dispatch.call(recipients,"Add","zhaofan_wang@tianma.cn");
-//                Dispatch.call(recipients,"Add","kun_fan@tianma.cn");
-//                Dispatch.call(recipients,"Add","wenhao_zhu@tianma.cn");
-//                Dispatch.call(recipients,"Add","guosong_yu@tianma.cn");
-//                Dispatch.call(recipients,"Add","wenling_xu@tianma.cn");
-//                Dispatch.call(recipients,"Add","xunfeng_xu@tianma.cn");
-//                Dispatch.call(recipients,"Add","lan_li3@tianma.cn");
-//                Dispatch.call(recipients,"Add","xia_yuan2@tianma.cn");
-//                Dispatch.call(recipients,"Add","yangfeng_shao1@tianma.cn");
-//                Dispatch.call(recipients,"Add","ying_wei@tianma.cn");
-//                Dispatch.call(recipients,"Add","yuqun_hu@tianma.cn");
-//                Dispatch.call(recipients,"Add","heying_mao@tianma.cn");
-//                Dispatch.call(recipients,"Add","joe_hahn@tianma.cn");
-//                Dispatch.call(recipients,"Add","qunteng_zheng@tianma.cn");
-//                Dispatch.call(recipients,"Add","xiaolian_zhou@tianma.cn");
-//                Dispatch.call(recipients,"Add","ruiying_gao@tianma.cn");
-//                Dispatch.call(recipients,"Add","dongai_shen@tianma.cn");
-//                Dispatch.call(recipients,"Add","guangyan_jiang@tianma.cn");
-//                Dispatch.call(recipients,"Add","dapeng_li@tianma.cn");
-//                Dispatch.call(recipients,"Add","cunjun_xia@tianma.cn");
-//                Dispatch.call(recipients,"Add","shulian_wang@tianma.cn");
-//                Dispatch.call(recipients,"Add","jiulong_zhang1@tianma.cn");
-//                Dispatch.call(recipients,"Add","xiangxu_meng@tianma.cn");
-//                Dispatch.call(recipients,"Add","zhiyuan_wang2@tianma.cn");
-//                Dispatch.call(recipients,"Add","lili_xia@tianma.cn");
-//                Dispatch.call(recipients,"Add","mengling_zheng@tianma.cn");
-//                Dispatch.call(recipients,"Add","binbin_xu@tianma.cn");
-//                Dispatch.call(recipients,"Add","xmoled_qa_xcpk@tianma.cn");
 
-//                Dispatch.put(mailItem, "CC", "ling_qiu@tianma.cn"); //抄送
-//                Dispatch.put(mailItem, "CC", "yuanyi_zhang@tianma.cn"); //抄送
-//                Dispatch.put(mailItem, "CC", "yunfei_qiu@tianma.cn"); //抄送
-//                Dispatch.put(mailItem, "CC", "julong_si@tianma.cn"); //抄送
-//                Dispatch.put(mailItem, "CC", "david@tianma.cn"); //抄送
-            }
-            if(map.get("role").equals("MODULE")) {
-//                Dispatch.put(mailItem, "CC", "lu_zou@tianma.cn;yisen_chen@tianma.cn"); //抄送
-            }
 
-//            Dispatch.call(recipients, "Add" , "1754687268@qq.com"); //添加收件人
-//            Dispatch.call(recipients, "Add" , "tm18_oled_yunying_jihua@tianma.cn"); //添加收件人
-//            Dispatch.call(recipients, "Add" , "li_yang6@tianma.cn"); //添加收件人
-//            Dispatch.call(recipients, "Add" , "qingyang_zuo@tianma.cn"); //添加收件人
-//            Dispatch.call(recipients, "Add" , "baolin_zhang@tianma.cn"); //添加收件人
-//            Dispatch.call(recipients, "Add" , "yangyang_huang@tianma.cn"); //添加收件人
-//            Dispatch.call(recipients, "Add" , "yue_gu3@tianma.cn"); //添加收件人
-//            Dispatch.call(recipients, "Add" , "caiping_lan@tianma.cn"); //添加收件人
+
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
             String date = df.format(new Date());
 //            Dispatch.put(mailItem, "Subject", "TM18 "+map.get("role")+"工厂M+1生产计划_"+map.get("role")+"_"+cur_excel_path.split("_")[1]); //主题
 
             Dispatch.put(mailItem, "Subject", map.get("title")); //主题
             Dispatch.put(mailItem, "CC", cc_str); //抄送
-
-
-//            Dispatch.put(mailItem, "CC", "1754687268@qq.com");
-
-            //Dispatch.put(mailItem, "ReadReceiptRequested", "false");
-
 
 //            String body = "<html><body>" +
 //                    "<div> <p>大家好<br />\n" +
@@ -737,6 +667,38 @@ public class UploadController {
 
     }
 
+    @RequestMapping("/getCurFile")
+    public String getCurFile(String role){
+        long cur_time = new Date().getTime();
+        String cur_tmp = "";
+        String filePath_tmp = "";
+        Boolean isExist = false;
+        String res = "";
+        File file = new File(upload_excel_path);
+        int time = 0;
+        long tmp = cur_time;
+        while(!isExist && time < 60){
+            cur_tmp = StringUtils.timeStamp2Date(tmp);
+            System.out.println(cur_tmp);
+            res = role+"生产计划_"+cur_tmp.replace(".","")+".xlsx";
+            filePath_tmp = upload_excel_path+role+"\\\\"+role+"生产计划_"+cur_tmp.replace(".","")+".xlsx";
+            System.out.println("--------------------");
+            System.out.println(filePath_tmp);
+            file = new File(filePath_tmp);
+            if(!file.exists()){
+                tmp = cur_time - 86400000;
+                cur_time = tmp;
+                time += 1;
+            }
+            else {
+                isExist = true;
+            }
+
+        }
+        System.out.println("1111111111111");
+        System.out.println(res);
+        return res;
+    }
 
     @RequestMapping(value = "/to_upload",method = RequestMethod.POST)
     @ResponseBody
