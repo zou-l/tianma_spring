@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianma.yunying.mapper.GanttTaskMapper">
+
+    <resultMap id="BaseResultMap" type="com.tianma.yunying.entity.GanttTask">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="start_date" jdbcType="VARCHAR" property="start_date" />
+        <result column="end_date_text" jdbcType="VARCHAR" property="end_date_text" />
+        <result column="text" jdbcType="VARCHAR" property="text" />
+        <result column="duration" jdbcType="INTEGER" property="duration" />
+        <result column="parent" jdbcType="VARCHAR" property="parent" />
+        <result column="color" jdbcType="VARCHAR" property="color" />
+        <result column="use_amount" jdbcType="VARCHAR" property="use_amount" />
+        <result column="render" jdbcType="VARCHAR" property="render" />
+        <result column="open" jdbcType="VARCHAR" property="open" />
+        <result column="project_name" jdbcType="VARCHAR" property="project_name" />
+<!--        <result column="factory_name" jdbcType="VARCHAR" property="factory_name" />-->
+        <result column="gantt_type" jdbcType="VARCHAR" property="gantt_type" />
+        <result column="desc" jdbcType="VARCHAR" property="desc" />
+        <result column="number" jdbcType="INTEGER" property="number" />
+        <result column="factory_number" jdbcType="VARCHAR" property="factory_number" />
+        <result column="pilot" jdbcType="VARCHAR" property="pilot" />
+        <result column="code1" jdbcType="VARCHAR" property="code1" />
+        <result column="code2" jdbcType="VARCHAR" property="code2" />
+        <result column="code3" jdbcType="VARCHAR" property="code3" />
+        <result column="code4" jdbcType="VARCHAR" property="code4" />
+    </resultMap>
+
+    <resultMap id="RunGanttTask" type="com.tianma.yunying.entity.RunGanttTask">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="start_date" jdbcType="VARCHAR" property="start_date" />
+        <result column="end_date_text" jdbcType="VARCHAR" property="end_date_text" />
+        <result column="text" jdbcType="VARCHAR" property="text" />
+        <result column="duration" jdbcType="INTEGER" property="duration"/>
+        <result column="parent" jdbcType="VARCHAR" property="parent" />
+        <result column="color" jdbcType="VARCHAR" property="color" />
+        <result column="use_amount" jdbcType="VARCHAR" property="use_amount" />
+        <result column="render" jdbcType="VARCHAR" property="render" />
+        <result column="open" jdbcType="VARCHAR" property="open" />
+        <result column="factory_type" jdbcType="VARCHAR" property="factory_type" />
+        <result column="desc" jdbcType="VARCHAR" property="desc" />
+        <result column="number" jdbcType="INTEGER" property="number" />
+        <result column="piolt" jdbcType="VARCHAR" property="piolt" />
+    </resultMap>
+
+    <resultMap id="GanttCapacity" type="com.tianma.yunying.entity.GanttCapacity">
+        <result column="facotry_type" jdbcType="VARCHAR" property="factory_type" />
+        <result column="product_in_ability" jdbcType="DECIMAL" property="product_in_ability" />
+        <result column="product_out_ability" jdbcType="DECIMAL" property="product_out_ability" />
+    </resultMap>
+
+    <resultMap id = "RunGanttInfo" type="com.tianma.yunying.entity.RunGanttInfo">
+        <result column="factory_type" jdbcType="VARCHAR" property="factory_type"/>
+        <result column="pilot" jdbcType="VARCHAR" property="pilot"/>
+        <result column="department" jdbcType="VARCHAR" property="department"/>
+        <result column="customer" jdbcType="VARCHAR" property="customer"/>
+        <result column="product_number" jdbcType="VARCHAR" property="product_number"/>
+        <result column="desc" jdbcType="VARCHAR" property="desc"/>
+        <result column="target" jdbcType="VARCHAR" property="target"/>
+        <result column="number" jdbcType="DECIMAL" property="number"/>
+        <result column="input_time" jdbcType="VARCHAR" property="input_time"/>
+        <result column="output_time" jdbcType="VARCHAR" property="output_time"/>
+        <result column="input_amount" jdbcType="DECIMAL" property="input_amount"/>
+        <result column="output_amount" jdbcType="DECIMAL" property="output_amount"/>
+        <result column="yield" jdbcType="VARCHAR" property="yield"/>
+        <result column="cycle" jdbcType="VARCHAR" property="cycle"/>
+        <result column="bank" jdbcType="VARCHAR" property="bank"/>
+    </resultMap>
+
+    <resultMap id="MacroGanttTask" type="com.tianma.yunying.entity.MacroGantt">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="start_date" jdbcType="VARCHAR" property="start_date" />
+        <result column="end_date_text" jdbcType="VARCHAR" property="end_date_text" />
+        <result column="text" jdbcType="VARCHAR" property="text" />
+        <result column="duration" jdbcType="INTEGER" property="duration" />
+        <result column="parent" jdbcType="VARCHAR" property="parent" />
+        <result column="color" jdbcType="VARCHAR" property="color" />
+        <result column="use_amount" jdbcType="VARCHAR" property="use_amount" />
+        <result column="render" jdbcType="VARCHAR" property="render" />
+        <result column="open" jdbcType="VARCHAR" property="open" />
+        <result column="project_name" jdbcType="VARCHAR" property="project_name" />
+        <result column="gantt_type" jdbcType="VARCHAR" property="gantt_type" />
+        <result column="desc" jdbcType="VARCHAR" property="desc" />
+        <result column="number" jdbcType="INTEGER" property="number" />
+        <result column="factory_number" jdbcType="VARCHAR" property="factory_number" />
+        <result column="pilot" jdbcType="VARCHAR" property="pilot" />
+        <result column="code1" jdbcType="VARCHAR" property="code1" />
+        <result column="code2" jdbcType="VARCHAR" property="code2" />
+        <result column="code3" jdbcType="VARCHAR" property="code3" />
+        <result column="code4" jdbcType="VARCHAR" property="code4" />
+    </resultMap>
+    <resultMap id="MacroGanttStatus" type="com.tianma.yunying.entity.MacroGantt_Status">
+        <result column="depart" jdbcType="VARCHAR" property="depart" />
+        <result column="project" jdbcType="VARCHAR" property="project" />
+        <result column="pilot" jdbcType="VARCHAR" property="pilot" />
+        <result column="target" jdbcType="VARCHAR" property="target" />
+    </resultMap>
+
+    <select id="getTask" resultMap="BaseResultMap">
+--     select DISTINCT * from gantt_task WHERE start_date is not null;
+--     select  * from gantt_task WHERE start_date is not null ORDER BY LENGTH(id);
+--        SELECT id,start_date,text,duration,parent,color,use_amount,render,`open`,`desc`,factory_number,gantt_type,number,ROW_NUMBER() over(PARTITION BY number ORDER BY LENGTH(id) ASC) rank_row from gantt_task;
+-- SELECT id,start_date,text,duration,parent,color,use_amount,render,`open`,`desc`,gantt_type,number,factory_number,ROW_NUMBER() over(PARTITION BY factory_number ORDER BY number ASC) rank_row from gantt_task;
+--    select id,sum(CAST(use_amount AS DECIMAL)) as use_amount,duration,min(start_date) as start_date,max(end_date_text) as end_date_text,color,`open`,parent,text,gantt_type,render from gantt_task GROUP BY id ORDER BY LENGTH(id);
+
+--     select id,sum(CAST(use_amount AS DECIMAL)) as use_amount,min(start_date) as start_date,max(end_date_text) as end_date_text,color,timestampdiff(day, min(start_date),max(end_date_text))+1 as duration,`open`,parent,text,gantt_type,render,number,ROW_NUMBER() over(PARTITION BY factory_number ORDER BY number ASC) from gantt_task GROUP BY id;
+        select * from(
+    select id,sum(CAST(use_amount AS DECIMAL)) as use_amount,min(start_date) as start_date,max(end_date_text) as end_date_text,color,timestampdiff(day, min(start_date),max(end_date_text))+1 as duration,`open`,parent,text,gantt_type,render,number,ROW_NUMBER() over(PARTITION BY factory_number ORDER BY number ASC) from gantt_task where id not like '%产出' GROUP BY id
+    UNION ALL
+    select id,sum(CAST(use_amount AS DECIMAL)) as use_amount,min(start_date) as start_date,max(end_date_text) as end_date_text,color,timestampdiff(day, min(start_date),max(end_date_text))+1 as duration,`open`,parent,text,gantt_type,render,number,ROW_NUMBER() over(PARTITION BY factory_number ORDER BY number ASC) from gantt_task where id like '%产出' GROUP BY id
+    )res_gantt
+    </select>
+
+    <select id="getTask_plan" resultMap="BaseResultMap">
+-- select id,sum(CAST(use_amount AS DECIMAL)) as use_amount,min(start_date) as start_date,max(end_date_text) as end_date_text,color,timestampdiff(day, min(start_date),max(end_date_text))+1 as duration,`open`,parent,text,gantt_type,render,number,ROW_NUMBER() over(PARTITION BY factory_number ORDER BY number ASC) from gantt_task where id not like '%实际%' GROUP BY id;
+    select * from(
+    select id,sum(CAST(use_amount AS DECIMAL)) as use_amount,min(start_date) as start_date,max(end_date_text) as end_date_text,color,timestampdiff(day, min(start_date),max(end_date_text))+1 as duration,`open`,parent,text,gantt_type,render,number,ROW_NUMBER() over(PARTITION BY factory_number ORDER BY number ASC) from gantt_task where id not like '%产出' GROUP BY id
+    UNION ALL
+    select id,sum(CAST(use_amount AS DECIMAL)) as use_amount,min(start_date) as start_date,max(end_date_text) as end_date_text,color,timestampdiff(day, min(start_date),max(end_date_text))+1 as duration,`open`,parent,text,gantt_type,render,number,ROW_NUMBER() over(PARTITION BY factory_number ORDER BY number ASC) from gantt_task where id like '%产出' GROUP BY id
+    )res_gantt
+
+    </select>
+
+    <select id="getTask_real" resultMap="BaseResultMap">
+select id,sum(CAST(use_amount AS DECIMAL)) as use_amount,min(start_date) as start_date,max(end_date_text) as end_date_text,color,timestampdiff(day, min(start_date),max(end_date_text))+1 as duration,`open`,parent,text,gantt_type,render,number,ROW_NUMBER() over(PARTITION BY factory_number ORDER BY number ASC) from gantt_task where id  like '%实际%' or `open` = "true" GROUP BY id;
+    </select>
+
+    <insert id="insertTask">
+        insert into gantt_task (id,start_date,text,duration,parent,color,use_amount,render,open,project_name,gantt_type,`desc`,number,factory_number,end_date_text,pilot,code1,code2,code3,code4) values (#{id},#{start_date},#{text},#{duration},#{parent},#{color},#{use_amount},#{render},#{open},#{project_name},#{gantt_type},#{desc},#{number},#{factory_number},#{end_date_text},#{pilot},#{code1},#{code2},#{code3},#{code4});
+    </insert>
+
+    <delete id="deleteTask">
+        delete from gantt_task;
+    </delete>
+    <delete id="deleteMacroTask">
+        delete from macro_gantt_task;
+    </delete>
+    <delete id="deleteMacroStatus">
+        delete from macro_gantt_status;
+    </delete>
+    <delete id="deleteRunTask">
+        delete from rungantt_task;
+    </delete>
+    <delete id="deleteRunGanttInfo">
+        delete from runganttinfo;
+    </delete>
+    <insert id="insertTask_run">
+        insert into rungantt_task (id,start_date,text,duration,parent,color,use_amount,render,open,factory_type,`desc`,number,end_date_text,pilot) values (#{id},#{start_date},#{text},#{duration},#{parent},#{color},#{use_amount},#{render},#{open},#{factory_type},#{desc},#{number},#{end_date_text},#{pilot});
+    </insert>
+    <insert id ="insertMacroStatus">
+        insert into macro_gantt_status values (#{depart},#{project},#{pilot},#{target})
+    </insert>
+
+    <select id="getAllDepart" resultType="String">
+    select DISTINCT code1 from gantt_task where code1 !="" and code1 != "0";
+    </select>
+    <select id="getAllProject" resultType="String">
+    select DISTINCT code2 from gantt_task where code2 !="" and code2 != "0";
+    </select>
+    <select id="getAllPilot" resultType="String">
+    select DISTINCT pilot from ${tablename} where pilot !="" and pilot != "0" ORDER BY pilot asc;
+    </select>
+    <select id="getAllTarget" resultType="String">
+    select DISTINCT code4 from gantt_task where code4 !="" and code4 != "0";
+    </select>
+
+    <select id="getRunTask" resultMap="RunGanttTask">
+--     select id,start_date,`open`,parent,color,pilot,number,use_amount,render,rungantt_task.text,ceil(use_amount/product_in_ability) as duration,factory_type,DATE_FORMAT(STR_TO_DATE(rungantt_task.start_date,"%Y/%m/%d")+ ceil(use_amount/product_in_ability)-1,"%Y/%m/%d") as end_date_text from rungantt_task LEFT JOIN gantt_capacity on rungantt_task.factory_type = gantt_capacity.facotry_type  where id not like "%产出"
+--         UNION
+--     select id,start_date,`open`,parent,color,pilot,number,use_amount,render,rungantt_task.text,ceil(use_amount/product_out_ability) as duration,factory_type,DATE_FORMAT(STR_TO_DATE(rungantt_task.start_date,"%Y/%m/%d")+ ceil(use_amount/product_out_ability)-1,"%Y/%m/%d") as end_date_text from rungantt_task LEFT JOIN gantt_capacity on rungantt_task.factory_type = gantt_capacity.facotry_type  where id  like "%产出" ORDER BY number
+--
+
+
+--     		select * from(
+-- 		select id,start_date,`open`,parent,color,pilot,number,use_amount,render,rungantt_task.text,ceil(use_amount/product_in_ability) as duration,factory_type,DATE_FORMAT(STR_TO_DATE(rungantt_task.start_date,"%Y/%m/%d")+ ceil(use_amount/product_in_ability)-1,"%Y/%m/%d") as end_date_text from rungantt_task LEFT JOIN gantt_capacity on rungantt_task.factory_type = gantt_capacity.facotry_type  where id not like "%产出"
+--       UNION ALL
+--     select id,start_date,`open`,parent,color,pilot,number,use_amount,render,rungantt_task.text,ceil(use_amount/product_out_ability) as duration,factory_type,DATE_FORMAT(STR_TO_DATE(rungantt_task.start_date,"%Y/%m/%d")+ ceil(use_amount/product_out_ability)-1,"%Y/%m/%d") as end_date_text from rungantt_task LEFT JOIN gantt_capacity on rungantt_task.factory_type = gantt_capacity.facotry_type  where id  like "%产出"
+-- 		) TEST  ORDER BY number;
+
+		select id,start_date,`open`,parent,color,pilot,number,use_amount,render,rungantt_task.text,duration,factory_type,DATE_FORMAT(STR_TO_DATE(rungantt_task.start_date,"%Y/%m/%d")+ duration-1,"%Y/%m/%d") as end_date_text from
+rungantt_task ORDER BY number
+    </select>
+
+    <select id="getMacroTask" resultMap="MacroGanttTask">
+        select * from macro_gantt_task ORDER BY number asc;
+    </select>
+
+    <select id="getRunTaskByPilot" resultMap="RunGanttTask">
+        select id,start_date,`open`,parent,color,pilot,number,use_amount,render,rungantt_task.text,duration,factory_type,DATE_FORMAT(STR_TO_DATE(rungantt_task.start_date,"%Y/%m/%d")+ duration-1,"%Y/%m/%d") as end_date_text from rungantt_task where pilot = #{pilot} ORDER BY number;
+
+    </select>
+
+    <select id="getTaskByPilot" resultMap="BaseResultMap">
+    select id,sum(CAST(use_amount AS DECIMAL)) as use_amount,min(start_date) as start_date,max(end_date_text) as end_date_text,color,timestampdiff(day, min(start_date),max(end_date_text))+1 as duration,`open`,parent,text,gantt_type,render,pilot,number,ROW_NUMBER() over(PARTITION BY factory_number ORDER BY number ASC) from gantt_task where id not like '%产出' and pilot = #{pilot} GROUP BY id
+        UNION ALL
+    select id,sum(CAST(use_amount AS DECIMAL)) as use_amount,min(start_date) as start_date,max(end_date_text) as end_date_text,color,timestampdiff(day, min(start_date),max(end_date_text))+1 as duration,`open`,parent,text,gantt_type,render,pilot,number,ROW_NUMBER() over(PARTITION BY factory_number ORDER BY number ASC) from gantt_task where id like '%产出' and pilot = #{pilot} GROUP BY id;
+    </select>
+
+    <select id="getCapacity" resultMap="GanttCapacity">
+        select * from gantt_capacity
+    </select>
+
+
+    <update id="updateCapacity">
+        update gantt_capacity set product_in_ability = #{product_in_ability},product_out_ability = #{product_out_ability} where facotry_type = #{factory_type}
+    </update>
+
+    <update id="updatePlanEnd">
+        update gantt_task set end_date_text = #{end_date_text} where id = #{id}
+    </update>
+
+
+    <insert id ="insertRunGanttInfo" >
+ insert into runganttinfo (factory_type,pilot,department,customer,product_number,`desc`,target,number,input_time,output_time,input_amount,output_amount,yield,cycle,bank) values (#{factory_type},#{pilot},#{department},#{customer},#{product_number},#{desc},#{target},#{number},#{input_time},#{output_time},#{input_amount},#{output_amount},#{yield},#{cycle},#{bank});
+    </insert>
+
+    <select id = "getRunGanttInfo" resultMap="RunGanttInfo">
+        select * from RunGanttInfo;
+    </select>
+
+    <select id = "getMacroStatus" resultMap="MacroGanttStatus">
+        select * from macro_gantt_status;
+    </select>
+
+    <insert id="insertMacroGantt">
+        insert into macro_gantt_task (id,start_date,text,duration,parent,color,use_amount,render,open,project_name,gantt_type,`desc`,number,factory_number,end_date_text,pilot,code1,code2,code3,code4) values (#{id},#{start_date},#{text},#{duration},#{parent},#{color},#{use_amount},#{render},#{open},#{project_name},#{gantt_type},#{desc},#{number},#{factory_number},#{end_date_text},#{pilot},#{code1},#{code2},#{code3},#{code4});
+    </insert>
+</mapper>

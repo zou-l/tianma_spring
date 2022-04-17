@@ -1,0 +1,75 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql:///yibao?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 500000000
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      max-file-size: 50MB  #单个数据大小
+      max-request-size: 100MB #总数据大小
+
+myaddress:
+#  ip: 10.105.65.41
+  ip: localhost
+  upload_excel_path: D:\\yunying\\upload\\excel\\
+  upload_picture_path: D:\\yunying\\upload\\picture\\
+  upload_mail_path: D:\\yunying\\upload\\mail\\
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   //输出SQL
+
+logging:
+  level:
+    com.tianma.yunying.mapper: debug
+
+#  type-aliases-package: com.tianma.yunying.entity
+#  configuration:
+#    map-underscore-to-camel-case=true:
+
+#分页pageHelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: false
+
+
+
+EmailInfo:
+  myEmailAccount: xmoled_yy_jhfb
+  myEmailPassword: tm@2021X
+#  myEmailSMTPHost: 172.25.200.200
+  myEmailSMTPHost: xmmail.tianma.cn
+
+
+
+#  myEmailAccount: 1754687268@qq.com
+#  myEmailPassword: kxptqfrtzahgcgib
+#  myEmailSMTPHost: smtp.qq.com
+
+#configuration:
+#  log-impl=org:
+#    apache:
+#      ibatis:
+#        logging:
+#          stdout:
+#            StdOutImpl:
+
+##showSql
+#logging:
+#  level:
+#    com:
+#      looedu:
+#        mapper: debug
+#logging:
+#  level:
+#    com.tianma.yunying: debug

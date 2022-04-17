@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianma.yunying.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.tianma.yunying.entity.User">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="userName" jdbcType="VARCHAR" property="userName" />
+        <result column="passWord" jdbcType="VARCHAR" property="passWord" />
+        <result column="role" jdbcType="VARCHAR" property="role" />
+    </resultMap>
+    <select id="getUserByName" resultType="com.tianma.yunying.entity.User">
+        select * from user where username = #{username}
+    </select>
+
+    <select id="login" resultType="java.lang.Boolean">
+        SELECT * FROM user WHERE username=#{username} AND PASSWORD=#{password}
+    </select>
+
+    <select id="getRole" resultType="string">
+        SELECT role FROM user WHERE username=#{username} AND PASSWORD=#{password}
+    </select>
+
+    <select id="register" resultType="java.lang.Boolean">
+        INSERT into USER(username,password)VALUES(#{username},#{password})
+    </select>
+
+<!--    <select id="addUser" resultType="java.lang.Boolean">-->
+<!--        INSERT into USER(username,password)VALUES(#{username},#{password})-->
+<!--    </select>-->
+</mapper>

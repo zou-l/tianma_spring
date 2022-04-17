@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianma.yunying.mapper.GanttMapper">
+    <resultMap id="BaseResultMap" type="com.tianma.yunying.entity.Gantt_Detail">
+        <result column="label" jdbcType="VARCHAR" property="label" />
+        <result column="IN_OUTPUT" jdbcType="VARCHAR" property="IN_OUTPUT" />
+        <result column="use_time" jdbcType="VARCHAR" property="use_time" />
+        <result column="use_amount" jdbcType="VARCHAR" property="use_amount" />
+    </resultMap>
+
+    <insert id="insert_detail">
+        insert into gantt_detail(label,`IN/OUTPUT`,use_time,use_amount) values (#{label},#{IN_OUTPUT},#{use_time},#{use_amount}
+    </insert>
+</mapper>

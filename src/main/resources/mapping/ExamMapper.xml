@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianma.yunying.mapper.ExamMapper">
+    <resultMap id="exam_user" type="com.tianma.yunying.entity.Exam_User">
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="mail" jdbcType="VARCHAR" property="mail"/>
+        <result column="department" jdbcType="VARCHAR" property="department"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+    </resultMap>
+    <resultMap id="exam_history" type="com.tianma.yunying.entity.Exam_Histroy">
+        <result column="exam_id" jdbcType="VARCHAR" property="exam_id"/>
+        <result column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="detail_desc" jdbcType="VARCHAR" property="detail_desc"/>
+        <result column="detail_task" jdbcType="VARCHAR" property="detail_task"/>
+        <result column="detail_time" jdbcType="INTEGER" property="detail_time"/>
+        <result column="detail_result" jdbcType="INTEGER" property="detail_result"/>
+    </resultMap>
+
+    <select id="getUserInfo" resultMap="exam_user">
+        select * from exam_user where id = #{id};
+    </select>
+
+    <select id="getHistory" resultMap="exam_history">
+        select * from exam_history where exam_id = #{exam_id};
+    </select>
+
+    <insert id="insertExamInfo">
+        insert into exam_info(exam_id,id,next_id,content1,content2,content3,remarks,degree,file,agree) values(#{exam_id},#{id},#{next_id},#{content1},#{content2},#{content3},#{remarks},#{degree},#{file},#{agree})
+    </insert>
+
+    <insert id="insertExamHistory">
+        insert into exam_history(exam_id,id,detail_desc,detail_task,detail_time,detail_result) values(#{exam_id},#{id},#{detail_desc},#{detail_task},#{detail_time},#{detail_result});
+    </insert>
+</mapper>

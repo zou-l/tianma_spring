@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianma.yunying.mapper.UploadMapper">
+    <resultMap id="BaseResultMap" type="com.tianma.yunying.entity.FileInfo">
+        <result column="filename" jdbcType="INTEGER" property="filename" />
+        <result column="import_user" jdbcType="VARCHAR" property="import_user" />
+        <result column="import_time" jdbcType="VARCHAR" property="import_time" />
+    </resultMap>
+
+    <insert id="insert">
+        INSERT into file(filename,import_user,import_time)VALUES(#{filename},#{import_user},#{import_time})
+    </insert>
+
+    <select id="getFileByname" resultType="java.lang.Boolean">
+        select COUNT(*) from file where filename = #{filename};
+    </select>
+
+    <select id="getMailByname" resultType="java.lang.Boolean">
+        select COUNT(*) from view_mail where filename = #{filename} and title = #{title};
+    </select>
+
+
+    <delete id="delete">
+        delete from file where filename = #{filename};
+    </delete>
+    <delete id="deleteMail">
+        delete from view_mail where filename = #{filename} and title = #{title};
+    </delete>
+
+    <insert id="insertMailInfo">
+        insert into view_mail(title,content,upload_time,role,filename)values(#{title},#{content},#{upload_time},#{role},#{filename})
+    </insert>
+</mapper>
